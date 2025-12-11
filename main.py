@@ -8,3 +8,6 @@ class Produto:
     def __str__(self):
         return (f"Produto: {self.nome} Preço: R${self.preco:.2f}"
                 f"Tipo de Venda: {self.tipo_venda}")
+
+class agricultor:
+    
