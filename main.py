@@ -10,16 +10,3 @@ class Produto:
                 f"Tipo de Venda: {self.tipo_venda}")
 
 class agricultor:
-    skdkodsikdfsjsdfj
-
-Eduardo
-
-Eyshila Serena
-
-Falta Danilo
-
-teste
-
-Danilo aqui
-
-aLEXANDRE AQUI, TESTE
