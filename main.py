@@ -10,4 +10,4 @@ class Produto:
                 f"Tipo de Venda: {self.tipo_venda}")
 
 class agricultor:
-    
+    skdkodsikdfsjsdfj
