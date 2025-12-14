@@ -31,7 +31,24 @@ Classes:
 - Exemplo de Método/Atributo: self.produtos = []
 - Código-Fonte (Visão Geral) : Implementa a Agregação: contém uma lista de objetos Produto. O método adicionar_produto é crucial para estabelecer o vínculo bidirecional e o controle da lista de produtos.
 
-2)	Adm : Controlador central, a abstração do sistema de gestão.
+3)	Adm : Controlador central, a abstração do sistema de gestão.
 - Exemplo de Método/Atributo: cadastrar_agricultor()
 - Código-Fonte (Visão Geral):  Responsável por toda a lógica de gerenciamento. Usa dicionários (self.agricultores, self.produtos) para acesso rápido aos objetos. Orquestra a criação de objetos e o método relacionar_produto_a_agricultor para delegar o vínculo ao objeto Agricultor.
 
+🧱 Princípios de POO Aplicados
+O projeto demonstrou a aplicação robusta dos pilares da Programação Orientada a Objetos:
+
+•	Encapsulamento: A classe Agricultor é a única que manipula sua lista interna de self.produtos. A complexidade de gerenciamento está oculta e protegida dentro da classe. Dados (atributos) e lógica (métodos) são agrupados nas classes.
+
+•	Abstração: Para a classe Adm, interagir com Agricultor é simples: chama-se o método adicionar_produto() e o sistema sabe como fazer o vínculo, sem expor a lista de produtos diretamente. Foco na informação relevante (o que faz), ignorando a complexidade (como faz).
+
+•	Associação/Relacionamento: Agricultor $\to$ Produto (Agregação via lista self.produtos). Produto $\to$ Agricultor (Associação via referência self.agricultor). Este é o cerne do requisito de rastreabilidade. Implementação de uma relação bidirecional (1 para N).
+
+•	Construtores (__init__): Garante que todo objeto, ao ser criado, esteja em um estado válido (ex: o Produto tem um preço válido em float, o Agricultor tem o nome e endereço definidos). Utilização em todas as classes principais.
+________________________________________
+🎯 Possíveis Usos da Nossa Solução
+Esta seção atende ao componente extensionista do trabalho, conforme item 1 do seu pedido.
+O AgriGest, embora simples, resolve um problema fundamental de rastreabilidade e organização de dados em cadeias de suprimentos curtas (do produtor ao consumidor final).
+1.	Apoio a Feiras e Associações: Em vez de gerenciar listas de papel ou planilhas desconectadas, a solução permite saber rapidamente: "Quem vende o quê?". Se um cliente procura "manga", o sistema aponta diretamente qual Agricultor (José, Maria, etc.) possui o Produto "manga" listado.
+2.	Organização Interna do Produtor: A base do sistema permite que o agricultor tenha um inventário digitalizado, facilitando a verificação de preços e a listagem de produtos antes de sair de casa para a feira.
+3.	Base para Evolução (MVP): Este sistema é um Mínimo Produto Viável (MVP) que pode evoluir para incluir módulos de gestão de vendas, controle de estoque e emissão de relatórios simples para apoio à tomada de decisão financeira e produtiva do agricultor familiar.
