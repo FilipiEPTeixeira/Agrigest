@@ -41,7 +41,7 @@ class Adm:
         print(f"Agricultor {nome} cadastrado com sucesso!")
         return novo_agricultor
 
- def cadastrar_produto(self):
+     def cadastrar_produto(self):
         print("\n--- Cadastro de Produto ---")
         nome = input("Digite o nome do Produto: ")
 
