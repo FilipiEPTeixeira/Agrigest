@@ -64,36 +64,39 @@ class Adm:
         print(f"Produto {nome} cadastrado com sucesso!")
         return novo_produto
 
-     def relacionar(self, produto_nome=nome, agricultor_nome=Nome):
+    def relacionar(self, produto_nome=None, agricultor_nome=None):
         if not produto_nome:
-            produto_nome = input("Qual o nome do produto que deseja relacionar? ")
-            
+            produto_nome = input(
+                "Qual o nome do produto que deseja relacionar? ")
+
         produto = self.produtos.get(produto_nome)
         if not produto:
             print(f"Produto {produto_nome} não encontrado.")
             return
-        
+
         if not agricultor_nome:
-            agricultores_nomes = list(self.agricultores.keys())[0]
+            agricultores_nomes = list(self.agricultores.keys())
             if not agricultores_nomes:
-                print("Não ha agricultores cadastrados para relacionar.")
+                print("Não há agricultores cadastrados para relacionar.")
                 return
-            
-            print("\nAgricultores disponíveis para relacionar:")
-                 ",".join(agricultores_nomes))
-            agricultor_nome = input(f"Qual o nome do agricultor que deseja relacionar ao produto {produto_nome}? ")
-            
+
+            print("\nAgricultores disponíveis para relação:",
+                  ", ".join(agricultores_nomes))
+            agricultor_nome = input(
+                f"Qual o nome do Agricultor responsável pelo {produto_nome}?")
+
         agricultor = self.agricultores.get(agricultor_nome)
         if not agricultor:
             print(f"Agricultor {agricultor_nome} não encontrado.")
             return
-        
+
         if produto not in agricultor.produtos:
             agricultor.adicionar_produto(produto)
-            print(f"Produto {produto_nome} relacionado ao agricultor {agricultor_nome} com sucesso!")   
-            
+            print(
+                f"Produto {produto_nome} relacionado com sucesso ao Agricultor {agricultor_nome}.")
         else:
-            print(f"O produto {produto_nome} já está relacionado ao agricultor {agricultor_nome}.") 
+            print(
+                f"O produto {produto_nome} já está relacionado ao Agricultor {agricultor_nome}.") 
                 
             
 gerenciador = Adm()
