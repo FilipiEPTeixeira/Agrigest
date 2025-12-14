@@ -40,3 +40,26 @@ class Adm:
         self.agricultores[nome] = novo_agricultor
         print(f"Agricultor {nome} cadastrado com sucesso!")
         return novo_agricultor
+
+ def cadastrar_produto(self):
+        print("\n--- Cadastro de Produto ---")
+        nome = input("Digite o nome do Produto: ")
+
+        try:
+            preco = input("Digite o preço do Produto: ")
+            preco_float = float(preco)
+        except ValueError:
+            print("Preço inválido. O cadastro do produto foi cancelado.")
+            return
+
+        tipo_venda = input(
+            "Digite o tipo de venda do Produto: ")
+
+        if nome in self.produtos:
+            print(f"O produto {nome} já está cadastrado.")
+            return
+
+        novo_produto = Produto(nome, preco_float, tipo_venda)
+        self.produtos[nome] = novo_produto
+        print(f"Produto {nome} cadastrado com sucesso!")
+        return novo_produto
