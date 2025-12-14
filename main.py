@@ -99,8 +99,6 @@ class Adm:
             
 
 
-
-
 gerenciador = Adm()
 
 agri1 = gerenciador.cadastrar_agricultor()
@@ -113,4 +111,4 @@ agri2 = gerenciador.cadastrar_agricultor()
 prod2 = gerenciador.cadastrar_produto()
 
 if prod2 and agri2:
-    gerenciador.relacionar_produto_a_agricultor()
+    gerenciador.relacionar()
