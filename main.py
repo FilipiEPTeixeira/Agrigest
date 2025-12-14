@@ -63,3 +63,38 @@ class Adm:
         self.produtos[nome] = novo_produto
         print(f"Produto {nome} cadastrado com sucesso!")
         return novo_produto
+
+     def relacionar(self, produto_nome=nome, agricultor_nome=Nome):
+        if not produto_nome:
+            produto_nome = input("Qual o nome do produto que deseja relacionar? ")
+            
+        produto = self.produtos.get(produto_nome)
+        if not produto:
+            print(f"Produto {produto_nome} não encontrado.")
+            return
+        
+        if not agricultor_nome:
+            agricultores_nomes = list(self.agricultores.keys())[0]
+            if not agricultores_nomes:
+                print("Não ha agricultores cadastrados para relacionar.")
+                return
+            
+            print("\nAgricultores disponíveis para relacionar:")
+                 ",".join(agricultores_nomes))
+            agricultor_nome = input(f"Qual o nome do agricultor que deseja relacionar ao produto {produto_nome}? ")
+            
+        agricultor = self.agricultores.get(agricultor_nome)
+        if not agricultor:
+            print(f"Agricultor {agricultor_nome} não encontrado.")
+            return
+        
+        if produto not in agricultor.produtos:
+            agricultor.adicionar_produto(produto)
+            print(f"Produto {produto_nome} relacionado ao agricultor {agricultor_nome} com sucesso!")   
+            
+        else:
+            print(f"O produto {produto_nome} já está relacionado ao agricultor {agricultor_nome}.") 
+                
+            
+            
+        
