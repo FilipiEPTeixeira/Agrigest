@@ -16,9 +16,9 @@ ________________________________________
 Metodologia de Desenvolvimento
 Adotamos os Processos Ágeis, utilizando o framework Scrum para guiar o desenvolvimento.
 •	Cerimônias: Realização de reuniões virtuais (vide evidências) para:
-o	Leitura aprofundada dos requisitos (Sprint 1).
-o	Definição de Classes, Atributos e Métodos.
-o	Delegação de papéis e Sincronização de Código (GitHub Commits).
+•	Leitura aprofundada dos requisitos (Sprint 1).
+•	Definição de Classes, Atributos e Métodos.
+•	Delegação de papéis e Sincronização de Código (GitHub Commits).
 •	Pesquisa de Campo: O projeto nasceu de uma escuta ativa com feirantes da Feira Agroecológica de Itapipoca e observações em campo, o que permitiu uma Abstração mais precisa do problema (ex: a simplicidade necessária na interface devido ao perfil semi-letrado de alguns agricultores).
 Classes Principais (POO)
 O sistema é construído sobre três classes essenciais: Produto, Agricultor e Adm.
