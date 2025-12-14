@@ -96,9 +96,6 @@ class Adm:
             print(f"O produto {produto_nome} já está relacionado ao agricultor {agricultor_nome}.") 
                 
             
-            
-
-
 gerenciador = Adm()
 
 agri1 = gerenciador.cadastrar_agricultor()
