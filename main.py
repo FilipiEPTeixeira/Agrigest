@@ -9,4 +9,17 @@ class Produto:
         return (f"Produto: {self.nome} Preço: R${self.preco:.2f}"
                 f"Tipo de Venda: {self.tipo_venda}")
 
-class agricultor:
+class Agricultor:
+    def __init__(self,nome,endereco):
+        self.nome = nome
+        self.endereco = endereco
+        self.produtos = []
+
+    def adicionar_produto(self, produto):
+        self.produtos.append(produto)
+        produto.agricultor = self
+
+    def __str__(self):
+        return f"Agricultor: {self.nome} Endereço: {self.endereco}"
+
+
