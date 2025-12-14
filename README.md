@@ -28,8 +28,8 @@ Classes:
 - Código-Fonte (Visão Geral) : Implementa Encapsulamento de dados do produto. O Construtor (__init__) garante que o preço seja tratado como float. O atributo self.agricultor = None é o ponto de partida para o relacionamento.
 
 2)  Agricultor: Representa o produtor individual.
-	- Exemplo de Método/Atributo: self.produtos = []
-	- Código-Fonte (Visão Geral) : Implementa a Agregação: contém uma lista de objetos Produto. O método adicionar_produto é crucial para estabelecer o vínculo bidirecional e o controle da lista de produtos.
+- Exemplo de Método/Atributo: self.produtos = []
+- Código-Fonte (Visão Geral) : Implementa a Agregação: contém uma lista de objetos Produto. O método adicionar_produto é crucial para estabelecer o vínculo bidirecional e o controle da lista de produtos.
 
 2)	Adm : Controlador central, a abstração do sistema de gestão.
 - Exemplo de Método/Atributo: cadastrar_agricultor()
