@@ -156,4 +156,4 @@ Projeto desenvolvido de forma colaborativa por:
 
  Considerações Finais
 
-Este projeto não se limita a cumprir um requisito acadêmico. Ele foi pensado para refletir **boas práticas reais de banco de dados**, preparando os estudantes para desafios do mercado e facilitando a compreensão de quem está começando na área.
+Este projeto não se limita a cumprir um requisito acadêmico. Ele foi pensado para refletir **boas práticas reais de banco de dados**, preparando os estudantes para desafios do mercado e facilitando a compreensão de quem está começando na área. 
