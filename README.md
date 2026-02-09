@@ -1,6 +1,6 @@
 **AgriGest — Sistema de Gestão Agrícola**
 
-Projeto desenvolvido como parte do Projeto Integrado II do curso de Análise e Desenvolvimento de Sistemas (ADS)** do CEAD/UFCA.
+Projeto desenvolvido como parte do Projeto Integrado II do curso de Análise e Desenvolvimento de Sistemas (ADS)* do CEAD/UFCA.
 
 O *AgriGest* é um sistema pensado para facilitar o controle de produtores rurais, seus produtos e as vendas realizadas, com foco em organização, rastreabilidade e integridade dos dados.
 
