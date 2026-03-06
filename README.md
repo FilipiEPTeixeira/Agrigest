@@ -161,3 +161,17 @@ Este projeto não se limita a cumprir um requisito acadêmico. Ele foi pensado p
 Wireframe Agrigest
 
 ![Image](https://github.com/user-attachments/assets/1864dc6f-df78-4ddb-a49e-ab77c1c076f2)
+
+![Image](https://github.com/user-attachments/assets/71f09881-6524-4157-8ce1-0413f1160f23)
+
+![Image](https://github.com/user-attachments/assets/641b8c10-a3a9-47cb-8de0-8b8fb4488e4c)
+
+![Image](https://github.com/user-attachments/assets/bc961322-2211-444c-9044-5f4eb17d369a)
+
+![Image](https://github.com/user-attachments/assets/e077efbb-7250-4028-8364-2fa2df4ac95d)
+
+![Image](https://github.com/user-attachments/assets/fefb7d1c-5deb-4689-ac44-29e9dc858303)
+
+![Image](https://github.com/user-attachments/assets/e643867d-8fb5-4786-a83f-2063a7f05c18)
+
+![Image](https://github.com/user-attachments/assets/0f97ea74-423c-4333-ba44-0c2be7f29f92)
