@@ -159,4 +159,5 @@ Projeto desenvolvido de forma colaborativa por:
 Este projeto não se limita a cumprir um requisito acadêmico. Ele foi pensado para refletir **boas práticas reais de banco de dados**, preparando os estudantes para desafios do mercado e facilitando a compreensão de quem está começando na área. 
 
 Wireframe Agrigest
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true](https://github.com/FilipiEPTeixeira/Agrigest/blob/41900805042a7b29babe66d688a5c8834e4983ba/Images/WhatsApp%20Image%202026-03-05%20at%2020.26.32.jpeg)
+
+![Image](https://github.com/user-attachments/assets/1864dc6f-df78-4ddb-a49e-ab77c1c076f2)
