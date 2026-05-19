@@ -175,3 +175,34 @@ Wireframe Agrigest
 ![Image](https://github.com/user-attachments/assets/e643867d-8fb5-4786-a83f-2063a7f05c18)
 
 ![Image](https://github.com/user-attachments/assets/0f97ea74-423c-4333-ba44-0c2be7f29f92)
+
+# Possíveis usos da nossa solução
+Trecho do README — Seção: "Possíveis usos da nossa solução"
+O AgriGest foi idealizado para resolver um problema real e recorrente nas feiras agroecológicas do interior do Ceará: a ausência de ferramentas digitais adequadas à realidade dos pequenos agricultores familiares. A seguir, descrevemos cenários concretos de como nossa solução pode impactar positivamente pessoas e negócios:
+1.	Gestão de feira municipal: Uma cooperativa de 15 produtores em Itapipoca-CE pode usar o AgriGest para cadastrar todos os membros, seus produtos e registrar cada transação durante a feira semanal. Ao final do dia, o Dashboard exibe o faturamento total e quais produtos precisam de reposição.
+2.	Controle de estoque preventivo: Um agricultor que cultiva mel de abelha pode definir um estoque mínimo de 10 litros. Quando o estoque cair abaixo desse limiar, o sistema gera um alerta visual no Dashboard, evitando a ruptura de estoque e a perda de vendas.
+3.	Rastreabilidade para certificação orgânica: O histórico de vendas por produto e por agricultor pode ser apresentado como evidência em processos de certificação orgânica participativa, fortalecendo a credibilidade dos produtores junto aos consumidores e órgãos certificadores.
+4.	Inclusão digital de produtores rurais: O design intuitivo e os fluxos simplificados tornam o AgriGest acessível a produtores com baixa familiaridade tecnológica, reduzindo a barreira de adoção de ferramentas digitais no campo.
+5.	Apoio a políticas públicas de agricultura familiar: Os dados gerados pelo sistema podem subsidiar relatórios para prefeituras e secretarias de agricultura, permitindo mensurar o impacto econômico das feiras agroecológicas na renda local.
+
+
+README — Documentação completa do projeto AgriGest
+Qual é o problema que a solução resolve?
+Feiras agroecológicas no interior do Ceará — e do Brasil em geral — operam sem qualquer sistema de gestão digital. Agricultores familiares controlam seus produtos, estoques e vendas em cadernos físicos ou planilhas improvisadas, o que gera perda de dados, dificuldade de rastreabilidade e ausência de indicadores para tomada de decisão. O AgriGest resolve esse problema oferecendo uma plataforma web centralizada, acessível e fácil de usar.
+
+Qual é o objetivo do sistema?
+O AgriGest tem como objetivo digitalizar e simplificar a gestão de feiras agroecológicas, permitindo o cadastro de agricultores e produtos, o registro de vendas, o controle de estoque e a análise do desempenho comercial, tudo em uma única plataforma web.
+
+Como o sistema funciona (visão geral)?
+O sistema é organizado em quatro módulos principais:
+•	Cadastros: registro de agricultores (dados pessoais, endereço, status) e de produtos (nome, categoria, agricultor responsável, preço, estoque).
+•	Comercial: registro de vendas com cálculo automático de valores, desconto e forma de pagamento.
+•	Dashboard: painel central com KPIs (agricultores, produtos, vendas do dia, faturamento do mês) e alertas de estoque.
+•	Análise: histórico de vendas com filtros, status e ações contextuais.
+
+Quais tecnologias foram utilizadas?
+•	Front-end: HTML5, CSS3, JavaScript ES6+
+•	Design System: Figma (protótipo de alta fidelidade)
+•	Iconografia: Tabler Icons (webfont outline)
+•	Versionamento: Git + GitHub
+•	Deploy: [a definir na próxima sprint]
