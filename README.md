@@ -206,3 +206,21 @@ Quais tecnologias foram utilizadas?
 •	Iconografia: Tabler Icons (webfont outline)
 •	Versionamento: Git + GitHub
 •	Deploy: [a definir na próxima sprint]
+
+Como executar ou utilizar a aplicação?
+6.	Clone o repositório: git clone https://github.com/[seu-time]/agrigest
+7.	Abra o arquivo index.html no navegador (não requer servidor ou instalação de dependências para o MVP).
+8.	Para visualizar o protótipo Figma: acesse o link disponível no repositório (seção Figma no README).
+
+Quais decisões foram tomadas ao longo do desenvolvimento?
+•	Paleta verde (#1A4F32): escolhida para reforçar a identidade visual agroecológica e transmitir confiança e naturalidade.
+•	Sidebar fixa + topbar: padrão de navegação familiar para sistemas de gestão (ERP-like), reduzindo a curva de aprendizado.
+•	Badges de status coloridos: feedback imediato sobre o estado de cada entidade (venda, agricultor, produto).
+•	Campos calculados automaticamente (readonly): prevenção de erros em operações matemáticas nas vendas.
+•	Alerta de estoque mínimo no Dashboard: proatividade do sistema, antecipando problemas antes que causem impacto.
+•	Mobile-first não implementado no MVP: decisão deliberada para focar na experiência desktop do operador da feira, com responsividade planejada para a próxima sprint.
+
+Importância da Experiência do Usuário (UX)
+Um bom design de interface vai muito além da estética. Quando um sistema é intuitivo, claro e acessível, ele passa a ser adotado de verdade — e não apenas instalado. No contexto do AgriGest, isso significa que um agricultor com pouca familiaridade digital consegue registrar uma venda em menos de 30 segundos, sem precisar de treinamento intensivo. Interfaces bem projetadas reduzem erros humanos (como lançar um valor incorreto), diminuem o tempo de operação e aumentam a confiança do usuário no sistema.
+No mundo real, sistemas que ignoram a UX frequentemente são abandonados, mesmo quando tecnicamente corretos. A adoção de um sistema depende, em grande parte, de quão transparente e eficiente é a sua interface. Ao investir em UX, o AgriGest não entrega apenas código: entrega uma ferramenta que respeita o tempo e a realidade do usuário, tornando a tecnologia um aliado real da agricultura familiar.
+
