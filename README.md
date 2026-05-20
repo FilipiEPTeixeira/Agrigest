@@ -192,7 +192,7 @@ O AgriGest foi idealizado para resolver um problema real e recorrente nas feiras
 - O AgriGest tem como objetivo digitalizar e simplificar a gestão de feiras agroecológicas, permitindo o cadastro de agricultores e produtos, o registro de vendas, o controle de estoque e a análise do desempenho comercial, tudo em uma única plataforma web.
 
 # Como o sistema funciona (visão geral)?
-- O sistema é organizado em quatro módulos principais:
+• O sistema é organizado em quatro módulos principais:
 •	Cadastros: registro de agricultores (dados pessoais, endereço, status) e de produtos (nome, categoria, agricultor responsável, preço, estoque).
 
 •	Comercial: registro de vendas com cálculo automático de valores, desconto e forma de pagamento.
@@ -221,6 +221,6 @@ O AgriGest foi idealizado para resolver um problema real e recorrente nas feiras
 •	Mobile-first não implementado no MVP: decisão deliberada para focar na experiência desktop do operador da feira, com responsividade planejada para a próxima sprint.
 
 # Importância da Experiência do Usuário (UX)
-Um bom design de interface vai muito além da estética. Quando um sistema é intuitivo, claro e acessível, ele passa a ser adotado de verdade — e não apenas instalado. No contexto do AgriGest, isso significa que um agricultor com pouca familiaridade digital consegue registrar uma venda em menos de 30 segundos, sem precisar de treinamento intensivo. Interfaces bem projetadas reduzem erros humanos (como lançar um valor incorreto), diminuem o tempo de operação e aumentam a confiança do usuário no sistema.
+- Um bom design de interface vai muito além da estética. Quando um sistema é intuitivo, claro e acessível, ele passa a ser adotado de verdade — e não apenas instalado. No contexto do AgriGest, isso significa que um agricultor com pouca familiaridade digital consegue registrar uma venda em menos de 30 segundos, sem precisar de treinamento intensivo. Interfaces bem projetadas reduzem erros humanos (como lançar um valor incorreto), diminuem o tempo de operação e aumentam a confiança do usuário no sistema.
 No mundo real, sistemas que ignoram a UX frequentemente são abandonados, mesmo quando tecnicamente corretos. A adoção de um sistema depende, em grande parte, de quão transparente e eficiente é a sua interface. Ao investir em UX, o AgriGest não entrega apenas código: entrega uma ferramenta que respeita o tempo e a realidade do usuário, tornando a tecnologia um aliado real da agricultura familiar.
 
