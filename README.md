@@ -192,7 +192,8 @@ O AgriGest foi idealizado para resolver um problema real e recorrente nas feiras
 - O AgriGest tem como objetivo digitalizar e simplificar a gestão de feiras agroecológicas, permitindo o cadastro de agricultores e produtos, o registro de vendas, o controle de estoque e a análise do desempenho comercial, tudo em uma única plataforma web.
 
 # Como o sistema funciona (visão geral)?
-• O sistema é organizado em quatro módulos principais:
+• O sistema é organizado em quatro módulos principais:]
+
 •	Cadastros: registro de agricultores (dados pessoais, endereço, status) e de produtos (nome, categoria, agricultor responsável, preço, estoque).
 
 •	Comercial: registro de vendas com cálculo automático de valores, desconto e forma de pagamento.
