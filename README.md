@@ -185,31 +185,31 @@ O AgriGest foi idealizado para resolver um problema real e recorrente nas feiras
 4.	Inclusão digital de produtores rurais: O design intuitivo e os fluxos simplificados tornam o AgriGest acessível a produtores com baixa familiaridade tecnológica, reduzindo a barreira de adoção de ferramentas digitais no campo.
 5.	Apoio a políticas públicas de agricultura familiar: Os dados gerados pelo sistema podem subsidiar relatórios para prefeituras e secretarias de agricultura, permitindo mensurar o impacto econômico das feiras agroecológicas na renda local.
 
-Qual é o problema que a solução resolve?
-Feiras agroecológicas no interior do Ceará — e do Brasil em geral — operam sem qualquer sistema de gestão digital. Agricultores familiares controlam seus produtos, estoques e vendas em cadernos físicos ou planilhas improvisadas, o que gera perda de dados, dificuldade de rastreabilidade e ausência de indicadores para tomada de decisão. O AgriGest resolve esse problema oferecendo uma plataforma web centralizada, acessível e fácil de usar.
+# Qual é o problema que a solução resolve?
+- Feiras agroecológicas no interior do Ceará — e do Brasil em geral — operam sem qualquer sistema de gestão digital. Agricultores familiares controlam seus produtos, estoques e vendas em cadernos físicos ou planilhas improvisadas, o que gera perda de dados, dificuldade de rastreabilidade e ausência de indicadores para tomada de decisão. O AgriGest resolve esse problema oferecendo uma plataforma web centralizada, acessível e fácil de usar.
 
-Qual é o objetivo do sistema?
-O AgriGest tem como objetivo digitalizar e simplificar a gestão de feiras agroecológicas, permitindo o cadastro de agricultores e produtos, o registro de vendas, o controle de estoque e a análise do desempenho comercial, tudo em uma única plataforma web.
+# Qual é o objetivo do sistema?
+- O AgriGest tem como objetivo digitalizar e simplificar a gestão de feiras agroecológicas, permitindo o cadastro de agricultores e produtos, o registro de vendas, o controle de estoque e a análise do desempenho comercial, tudo em uma única plataforma web.
 
-Como o sistema funciona (visão geral)?
+# Como o sistema funciona (visão geral)?
 O sistema é organizado em quatro módulos principais:
 •	Cadastros: registro de agricultores (dados pessoais, endereço, status) e de produtos (nome, categoria, agricultor responsável, preço, estoque).
 •	Comercial: registro de vendas com cálculo automático de valores, desconto e forma de pagamento.
 •	Dashboard: painel central com KPIs (agricultores, produtos, vendas do dia, faturamento do mês) e alertas de estoque.
 •	Análise: histórico de vendas com filtros, status e ações contextuais.
 
-Quais tecnologias foram utilizadas?
+# Quais tecnologias foram utilizadas?
 •	Front-end: HTML5, CSS3, JavaScript ES6+
 •	Design System: Figma (protótipo de alta fidelidade)
 •	Iconografia: Tabler Icons (webfont outline)
 •	Versionamento: Git + GitHub
 •	Deploy: [a definir na próxima sprint]
 
-Como executar ou utilizar a aplicação?
+# Como executar ou utilizar a aplicação?
 - Baixe o arquivo index.html
 - Abra o arquivo index.html no navegador (não requer servidor ou instalação de dependências para o MVP).
 
-Quais decisões foram tomadas ao longo do desenvolvimento?
+# Quais decisões foram tomadas ao longo do desenvolvimento?
 •	Paleta verde (#1A4F32): escolhida para reforçar a identidade visual agroecológica e transmitir confiança e naturalidade.
 •	Sidebar fixa + topbar: padrão de navegação familiar para sistemas de gestão (ERP-like), reduzindo a curva de aprendizado.
 •	Badges de status coloridos: feedback imediato sobre o estado de cada entidade (venda, agricultor, produto).
@@ -217,7 +217,7 @@ Quais decisões foram tomadas ao longo do desenvolvimento?
 •	Alerta de estoque mínimo no Dashboard: proatividade do sistema, antecipando problemas antes que causem impacto.
 •	Mobile-first não implementado no MVP: decisão deliberada para focar na experiência desktop do operador da feira, com responsividade planejada para a próxima sprint.
 
-Importância da Experiência do Usuário (UX)
+# Importância da Experiência do Usuário (UX)
 Um bom design de interface vai muito além da estética. Quando um sistema é intuitivo, claro e acessível, ele passa a ser adotado de verdade — e não apenas instalado. No contexto do AgriGest, isso significa que um agricultor com pouca familiaridade digital consegue registrar uma venda em menos de 30 segundos, sem precisar de treinamento intensivo. Interfaces bem projetadas reduzem erros humanos (como lançar um valor incorreto), diminuem o tempo de operação e aumentam a confiança do usuário no sistema.
 No mundo real, sistemas que ignoram a UX frequentemente são abandonados, mesmo quando tecnicamente corretos. A adoção de um sistema depende, em grande parte, de quão transparente e eficiente é a sua interface. Ao investir em UX, o AgriGest não entrega apenas código: entrega uma ferramenta que respeita o tempo e a realidade do usuário, tornando a tecnologia um aliado real da agricultura familiar.
 
