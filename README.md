@@ -185,8 +185,6 @@ O AgriGest foi idealizado para resolver um problema real e recorrente nas feiras
 4.	Inclusão digital de produtores rurais: O design intuitivo e os fluxos simplificados tornam o AgriGest acessível a produtores com baixa familiaridade tecnológica, reduzindo a barreira de adoção de ferramentas digitais no campo.
 5.	Apoio a políticas públicas de agricultura familiar: Os dados gerados pelo sistema podem subsidiar relatórios para prefeituras e secretarias de agricultura, permitindo mensurar o impacto econômico das feiras agroecológicas na renda local.
 
-
-README — Documentação completa do projeto AgriGest
 Qual é o problema que a solução resolve?
 Feiras agroecológicas no interior do Ceará — e do Brasil em geral — operam sem qualquer sistema de gestão digital. Agricultores familiares controlam seus produtos, estoques e vendas em cadernos físicos ou planilhas improvisadas, o que gera perda de dados, dificuldade de rastreabilidade e ausência de indicadores para tomada de decisão. O AgriGest resolve esse problema oferecendo uma plataforma web centralizada, acessível e fácil de usar.
 
@@ -208,9 +206,8 @@ Quais tecnologias foram utilizadas?
 •	Deploy: [a definir na próxima sprint]
 
 Como executar ou utilizar a aplicação?
-6.	Clone o repositório: git clone https://github.com/[seu-time]/agrigest
-7.	Abra o arquivo index.html no navegador (não requer servidor ou instalação de dependências para o MVP).
-8.	Para visualizar o protótipo Figma: acesse o link disponível no repositório (seção Figma no README).
+- Baixe o arquivo index.html
+- Abra o arquivo index.html no navegador (não requer servidor ou instalação de dependências para o MVP).
 
 Quais decisões foram tomadas ao longo do desenvolvimento?
 •	Paleta verde (#1A4F32): escolhida para reforçar a identidade visual agroecológica e transmitir confiança e naturalidade.
