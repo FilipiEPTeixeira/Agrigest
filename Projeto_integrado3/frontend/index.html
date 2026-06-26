@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriGest — Sistema de Gestão de Feiras Agroecológicas</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <div class="brand"><i class="ti ti-leaf" aria-hidden="true"></i> AGRIGEST</div>
+    <nav id="topnav">
+      <a onclick="showPage('dashboard')" id="tn-dash" class="active">Dashboard</a>
+      <a onclick="showPage('agricultores')" id="tn-agri">Agricultores</a>
+      <a onclick="novoAgricultor()" id="tn-cadagri">Cad. Agricultores</a>
+      <a onclick="showPage('produtos')" id="tn-prod">Produtos</a>
+      <a onclick="novoProduto()" id="tn-cadprod">Cad. Produtos</a>
+      <a onclick="showPage('vendas')" id="tn-vend">Vendas</a>
+      <a onclick="showPage('reg-venda')" id="tn-regv">Reg. Vendas</a>
+    </nav>
+    <div class="user-area" id="user-area" style="display:none">
+      <span id="user-nome"></span>
+      <a onclick="fazerLogout()">Sair</a>
+    </div>
+  </div>
+  <div class="main">
+    <div class="sidebar" id="sidebar">
+      <div class="sec-label">Principal</div>
+      <a onclick="showPage('dashboard')" id="sb-dash" class="active"><i class="ti ti-layout-dashboard" style="margin-right:8px;font-size:14px" aria-hidden="true"></i>Dashboard</a>
+      <div class="sec-label">Cadastro</div>
+      <a onclick="showPage('agricultores')" id="sb-agri"><i class="ti ti-user" style="margin-right:8px;font-size:14px" aria-hidden="true"></i>Agricultores</a>
+      <a onclick="showPage('produtos')" id="sb-prod"><i class="ti ti-basket" style="margin-right:8px;font-size:14px" aria-hidden="true"></i>Produtos</a>
+      <div class="sec-label">Comercial</div>
+      <a onclick="showPage('vendas')" id="sb-vend"><i class="ti ti-receipt" style="margin-right:8px;font-size:14px" aria-hidden="true"></i>Vendas</a>
+      <div class="sec-label">Análise</div>
+      <a onclick="showPage('dashboard')" id="sb-rel"><i class="ti ti-chart-bar" style="margin-right:8px;font-size:14px" aria-hidden="true"></i>Relatórios</a>
+    </div>
+
+    <div class="content">
+
+      <!-- LOGIN -->
+      <div class="page active" id="page-login" style="display:none">
+        <div class="login-wrap">
+          <div class="login-logo">
+            <div style="width:56px;height:56px;background:var(--green-light);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:10px">
+              <i class="ti ti-leaf" style="font-size:28px;color:var(--green)" aria-hidden="true"></i>
+            </div>
+            <div class="logo-text">AgriGest</div>
+            <div class="logo-sub">Sistema de Gestão de Feiras Agroecológicas</div>
+          </div>
+          <div class="login-card">
+            <div class="login-erro" id="login-erro"></div>
+            <div class="form-group"><label>Email</label><input type="email" id="login-email" placeholder="agricultor@email.com"></div>
+            <div class="form-group"><label>Senha</label><input type="password" id="login-senha" placeholder="••••••••"></div>
+            <button class="btn-login" id="login-btn" onclick="fazerLogin()">Entrar no sistema</button>
+            <div class="forgot" onclick="alert('Funcionalidade de recuperação de senha ainda não implementada nesta versão de demonstração.')">Esqueci a senha</div>
+          </div>
+          <div class="login-hint">Acesso de demonstração: admin@agrigest.com / agrigest123</div>
+        </div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <div class="page" id="page-dashboard">
+        <div class="breadcrumb">Início / Dashboard</div>
+        <div class="page-title">Visão Geral</div>
+        <div class="page-sub" id="dashboard-sub">Bem-vindo ao AgriGest</div>
+        <div class="cards-row">
+          <div class="kpi">
+            <div class="kpi-icon green"><i class="ti ti-users" aria-hidden="true"></i></div>
+            <div class="kpi-label">Agricultores</div>
+            <div class="kpi-val" id="kpi-agricultores">—</div>
+            <div class="kpi-sub pos" id="kpi-agricultores-sub"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-icon amber"><i class="ti ti-basket" aria-hidden="true"></i></div>
+            <div class="kpi-label">Produtos ativos</div>
+            <div class="kpi-val" id="kpi-produtos">—</div>
+            <div class="kpi-sub warn" id="kpi-produtos-sub"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-icon blue"><i class="ti ti-shopping-cart" aria-hidden="true"></i></div>
+            <div class="kpi-label">Vendas hoje</div>
+            <div class="kpi-val" id="kpi-vendas">—</div>
+            <div class="kpi-sub danger" id="kpi-vendas-sub"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-icon purple"><i class="ti ti-currency-dollar" aria-hidden="true"></i></div>
+            <div class="kpi-label">Faturamento mês</div>
+            <div class="kpi-val" id="kpi-faturamento">—</div>
+            <div class="kpi-sub pos" id="kpi-faturamento-sub"></div>
+          </div>
+        </div>
+        <div class="alert-bar" id="dashboard-alert" style="display:none">
+          <i class="ti ti-alert-triangle" style="font-size:16px" aria-hidden="true"></i>
+          <span id="dashboard-alert-texto"></span>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Últimas vendas</div>
+          <table>
+            <thead><tr><th>#ID</th><th>Produto</th><th>Cliente</th><th>Qtd</th><th>Valor Final</th><th>Pagamento</th><th>Status</th><th>Data</th></tr></thead>
+            <tbody id="tbody-ultimas-vendas"></tbody>
+          </table>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:10px" id="dashboard-count"></div>
+        </div>
+      </div>
+
+      <!-- AGRICULTORES -->
+      <div class="page" id="page-agricultores">
+        <div class="breadcrumb">Início / Agricultores</div>
+        <div class="page-title">Agricultores</div>
+        <div class="page-sub">Gerencie os produtores rurais cadastrados no sistema</div>
+        <div class="toolbar">
+          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> <input type="text" id="busca-agricultores" placeholder="Buscar por nome ou CPF..." oninput="debouncedSearch('agri', carregarAgricultores)"></div>
+          <button class="btn-primary" onclick="novoAgricultor()"><i class="ti ti-plus" aria-hidden="true"></i> Cadastrar agricultor</button>
+        </div>
+        <div class="panel">
+          <table>
+            <thead><tr><th>#ID</th><th>Nome</th><th>CPF</th><th>Cidade/UF</th><th>Telefone</th><th>Total vendas</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="tbody-agricultores"></tbody>
+          </table>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:10px" id="agricultores-count"></div>
+        </div>
+      </div>
+
+      <!-- CAD AGRICULTOR -->
+      <div class="page" id="page-cad-agri">
+        <div class="breadcrumb">Início / Agricultores / Cadastrar</div>
+        <div class="page-title" id="cad-agri-titulo">Cadastrar Agricultor</div>
+        <div class="page-sub">Preencha os dados do produtor rural. (*) Campos obrigatórios</div>
+        <div class="panel">
+          <div class="section-header"><i class="ti ti-user" aria-hidden="true"></i> Dados pessoais</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Nome completo *</label><input type="text" id="agri-nome" placeholder="Ex. Danilo Barros de Novais"></div>
+            <div class="form-group"><label>CPF *</label><input type="text" id="agri-cpf" placeholder="000.000.000-00"></div>
+            <div class="form-group"><label>Email</label><input type="email" id="agri-email" placeholder="agricultor@gmail.com"></div>
+            <div class="form-group"><label>Telefone *</label><input type="text" id="agri-telefone" placeholder="(xx) xxxxx-xxxx"></div>
+          </div>
+          <div class="section-header" style="margin-top:4px"><i class="ti ti-map-pin" aria-hidden="true"></i> Endereço</div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Endereço</label><input type="text" id="agri-endereco" placeholder="Sítio Vó Santa, Zona Rural"></div>
+          </div>
+          <div class="form-grid" style="grid-template-columns:1fr 1fr 140px">
+            <div class="form-group"><label>Cidade</label><input type="text" id="agri-cidade" placeholder="Itapipoca"></div>
+            <div class="form-group"><label>Estado</label>
+              <select id="agri-estado">
+                <option value="">Selecione...</option>
+                <option value="CE" selected>CE</option><option value="PI">PI</option><option value="RN">RN</option>
+              </select>
+            </div>
+            <div class="form-group"><label>CEP</label><input type="text" id="agri-cep" placeholder="00.000-00"></div>
+          </div>
+          <div class="section-header" style="margin-top:4px"><i class="ti ti-settings" aria-hidden="true"></i> Configurações</div>
+          <div class="toggle-row"><div class="toggle" id="agri-ativo-toggle" data-ativo="true" onclick="alternarToggle('agri-ativo-toggle')"></div> Agricultor ativo</div>
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="showPage('agricultores')">Cancelar</button>
+            <button class="btn-primary" id="agri-save-btn" onclick="salvarAgricultor()"><i class="ti ti-check" aria-hidden="true"></i> Salvar agricultor</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTOS -->
+      <div class="page" id="page-produtos">
+        <div class="breadcrumb">Início / Produtos</div>
+        <div class="page-title">Produtos</div>
+        <div class="page-sub">Catálogo de itens agrícolas disponíveis para venda</div>
+        <div class="alert-bar" id="produtos-alert" style="display:none;margin-bottom:12px">
+          <i class="ti ti-alert-triangle" style="font-size:16px" aria-hidden="true"></i>
+          <span id="produtos-alert-texto"></span>
+        </div>
+        <div class="toolbar">
+          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> <input type="text" id="busca-produtos" placeholder="Buscar produto ou categoria..." oninput="debouncedSearch('prod', carregarProdutos)"></div>
+          <button class="btn-primary" onclick="novoProduto()"><i class="ti ti-plus" aria-hidden="true"></i> Cadastrar produto</button>
+        </div>
+        <div class="panel">
+          <table>
+            <thead><tr><th>ID</th><th>Produto</th><th>Agricultor</th><th>Categoria</th><th>Preço</th><th>Tipo</th><th>Estoque</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="tbody-produtos"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CAD PRODUTO -->
+      <div class="page" id="page-cad-prod">
+        <div class="breadcrumb">Início / Produtos / Cadastrar</div>
+        <div class="page-title" id="cad-prod-titulo">Cadastrar Produto</div>
+        <div class="page-sub">Adicione um novo item ao catálogo agrícola. (*) Campos obrigatórios</div>
+        <div class="panel">
+          <div class="section-header"><i class="ti ti-leaf" aria-hidden="true"></i> Identificação do produto</div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Agricultor responsável *</label>
+              <select id="prod-agricultor"><option value="">Selecione o agricultor...</option></select>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group"><label>Nome do produto *</label><input type="text" id="prod-nome" placeholder="Ex. Tomate Orgânico..."></div>
+            <div class="form-group"><label>Categoria *</label>
+              <select id="prod-categoria">
+                <option value="">Selecione...</option>
+                <option>Hortaliça</option><option>Fruta</option><option>Apicultura</option><option>Snacks</option><option>Cana-de-açúcar</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Descrição</label><textarea id="prod-descricao" placeholder="Descreva o produto, características, cultivo, etc..."></textarea></div>
+          </div>
+          <div class="section-header"><i class="ti ti-tag" aria-hidden="true"></i> Preço e comercialização</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Tipo de venda *</label>
+              <select id="prod-tipo">
+                <option value="">Selecione...</option>
+                <option value="kg">kg</option><option value="Litro">Litro</option><option value="Unidade">Unidade</option><option value="Caixa">Caixa</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Preço unitário (R$) *</label><input type="number" id="prod-preco" placeholder="0,00" value="0"></div>
+          </div>
+          <div class="section-header"><i class="ti ti-package" aria-hidden="true"></i> Estoque</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Quantidade em estoque *</label><input type="number" id="prod-estoque" value="0"></div>
+            <div class="form-group"><label>Estoque mínimo *</label><input type="number" id="prod-estoque-min" value="10"></div>
+          </div>
+          <div class="toggle-row"><div class="toggle" id="prod-ativo-toggle" data-ativo="true" onclick="alternarToggle('prod-ativo-toggle')"></div> Produto ativo no catálogo</div>
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="showPage('produtos')">Cancelar</button>
+            <button class="btn-primary" id="prod-save-btn" onclick="salvarProduto()"><i class="ti ti-check" aria-hidden="true"></i> Salvar produto</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VENDAS -->
+      <div class="page" id="page-vendas">
+        <div class="breadcrumb">Início / Vendas</div>
+        <div class="page-title">Vendas</div>
+        <div class="page-sub">Histórico completo de transações comerciais</div>
+        <div class="toolbar">
+          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> <input type="text" id="busca-vendas" placeholder="Buscar por cliente, produto..." oninput="debouncedSearch('venda', carregarVendas)"></div>
+          <button class="btn-primary" onclick="showPage('reg-venda')"><i class="ti ti-plus" aria-hidden="true"></i> Registrar venda</button>
+        </div>
+        <div class="panel">
+          <table>
+            <thead><tr><th>ID</th><th>Produto</th><th>Cliente</th><th>Qtd</th><th>V. Unitário</th><th>Desconto</th><th>Valor Final</th><th>Pagamento</th><th>Status</th><th>Data</th><th>Ações</th></tr></thead>
+            <tbody id="tbody-vendas"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- REG VENDA -->
+      <div class="page" id="page-reg-venda">
+        <div class="breadcrumb">Início / Vendas / Registrar venda</div>
+        <div class="page-title">Registrar Venda</div>
+        <div class="page-sub">Registre uma nova transação comercial. (*) Campos obrigatórios</div>
+        <div class="panel">
+          <div class="section-header"><i class="ti ti-basket" aria-hidden="true"></i> Identificação do produto</div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Produto *</label>
+              <select id="venda-produto" onchange="calcularVenda()"><option value="">Selecione o produto...</option></select>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group"><label>Quantidade *</label><input type="number" id="venda-qtd" value="0" oninput="calcularVenda()"></div>
+            <div class="form-group"><label>Valor unitário (R$)</label><input type="text" id="venda-valor-unit" placeholder="Preenchido automaticamente..." readonly></div>
+            <div class="form-group"><label>Valor total (R$)</label><input type="text" id="venda-valor-total" placeholder="Calculado automaticamente..." readonly style="background:var(--color-background-secondary)"></div>
+            <div class="form-group"><label>Desconto (R$)</label><input type="number" id="venda-desconto" value="0" oninput="calcularVenda()"></div>
+          </div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Valor final (R$)</label><input type="text" id="venda-valor-final" placeholder="Calculado automaticamente..." readonly style="background:var(--color-background-secondary)"></div>
+          </div>
+          <div class="section-header"><i class="ti ti-user" aria-hidden="true"></i> Dados do cliente</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Nome do cliente *</label><input type="text" id="venda-cliente-nome" placeholder="Nome completo..."></div>
+            <div class="form-group"><label>CPF do cliente</label><input type="text" id="venda-cliente-cpf" placeholder="000.000.000-00"></div>
+          </div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Telefone</label><input type="text" id="venda-cliente-tel" placeholder="(00) 0 0000-0000"></div>
+          </div>
+          <div class="section-header"><i class="ti ti-credit-card" aria-hidden="true"></i> Pagamento</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Forma de pagamento *</label>
+              <select id="venda-pagamento">
+                <option value="">Selecione...</option>
+                <option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Status</label>
+              <select id="venda-status">
+                <option value="concluida">Concluída</option><option value="pendente">Pendente</option><option value="cancelada">Cancelada</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Observações</label><textarea id="venda-obs" placeholder="Informações adicionais sobre a venda..."></textarea></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="showPage('vendas')">Cancelar</button>
+            <button class="btn-primary" id="venda-save-btn" onclick="cadastrarVenda()"><i class="ti ti-check" aria-hidden="true"></i> Cadastrar venda</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
