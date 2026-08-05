@@ -1,0 +1,357 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:var(--font-sans)}
+:root{--green:#2d7a4f;--green-light:#e8f5ee;--green-mid:#4caf7d;--green-dark:#1a4f32;--amber:#f59e0b;--red:#e24b4a;--gray-bg:#f8f9fa;--sidebar-w:200px}
+body{background:var(--color-background-tertiary)}
+.app{display:flex;flex-direction:column;height:100vh;min-height:600px;background:var(--color-background-tertiary)}
+.topbar{background:var(--green-dark);color:#fff;display:flex;align-items:center;gap:8px;padding:0 16px;height:44px;flex-shrink:0}
+.topbar .brand{font-size:16px;font-weight:500;letter-spacing:1px;color:#fff;display:flex;align-items:center;gap:6px}
+.topbar nav{display:flex;gap:2px;margin-left:12px;flex:1;overflow:hidden}
+.topbar nav a{font-size:11px;color:rgba(255,255,255,0.75);padding:4px 8px;border-radius:4px;cursor:pointer;white-space:nowrap;text-decoration:none}
+.topbar nav a:hover{background:rgba(255,255,255,0.12);color:#fff}
+.topbar nav a.active{background:rgba(255,255,255,0.2);color:#fff}
+.main{display:flex;flex:1;overflow:hidden}
+.sidebar{width:var(--sidebar-w);background:var(--green-dark);color:#fff;flex-shrink:0;padding:16px 0;overflow-y:auto}
+.sidebar .sec-label{font-size:10px;font-weight:500;color:rgba(255,255,255,0.45);padding:12px 16px 4px;letter-spacing:1px;text-transform:uppercase}
+.sidebar a{display:block;padding:8px 16px;font-size:13px;color:rgba(255,255,255,0.8);cursor:pointer;border-radius:0}
+.sidebar a:hover{background:rgba(255,255,255,0.1);color:#fff}
+.sidebar a.active{background:rgba(255,255,255,0.18);color:#fff;border-left:3px solid var(--green-mid)}
+.content{flex:1;overflow-y:auto;padding:24px 28px;background:var(--color-background-tertiary)}
+.page{display:none}
+.page.active{display:block}
+.breadcrumb{font-size:12px;color:var(--color-text-secondary);margin-bottom:4px}
+.page-title{font-size:22px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+.page-sub{font-size:13px;color:var(--color-text-secondary);margin-bottom:20px}
+.cards-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:14px 16px}
+.kpi-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px}
+.kpi-icon.green{background:var(--green-light);color:var(--green)}
+.kpi-icon.amber{background:#fef3c7;color:#b45309}
+.kpi-icon.blue{background:#eff6ff;color:#2563eb}
+.kpi-icon.purple{background:#f5f3ff;color:#7c3aed}
+.kpi-val{font-size:22px;font-weight:500;color:var(--color-text-primary);line-height:1}
+.kpi-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}
+.kpi-sub{font-size:11px;color:var(--color-text-secondary);margin-top:4px}
+.kpi-sub.pos{color:#059669}
+.alert-bar{background:#fef3c7;border:0.5px solid #f59e0b;border-radius:var(--border-radius-md);padding:10px 14px;display:flex;align-items:center;gap:8px;font-size:13px;color:#92400e;margin-bottom:16px}
+.panel{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px}
+.panel-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;padding:8px 10px;color:var(--color-text-secondary);font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);font-size:11px;text-transform:uppercase;letter-spacing:0.4px}
+td{padding:9px 10px;color:var(--color-text-primary);border-bottom:0.5px solid var(--color-border-tertiary)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--color-background-secondary)}
+.badge{display:inline-block;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:500}
+.badge.ativo,.badge.concluida{background:#d1fae5;color:#065f46}
+.badge.pendente{background:#fef3c7;color:#92400e}
+.badge.inativo,.badge.cancelada{background:#fee2e2;color:#991b1b}
+.toolbar{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.search-box{flex:1;display:flex;align-items:center;gap:8px;background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:6px 12px;font-size:13px;color:var(--color-text-secondary)}
+.btn-primary{background:var(--green);color:#fff;border:none;border-radius:var(--border-radius-md);padding:8px 14px;font-size:12px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.btn-primary:hover{background:var(--green-dark)}
+.btn-sm{font-size:11px;padding:3px 8px;border-radius:4px;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary)}
+.btn-sm.danger{color:#e24b4a;border-color:#fca5a5}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-grid.cols1{grid-template-columns:1fr}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group label{font-size:12px;font-weight:500;color:var(--color-text-secondary)}
+.form-group input,.form-group select,.form-group textarea{border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:8px 10px;font-size:13px;background:var(--color-background-primary);color:var(--color-text-primary)}
+.form-group textarea{min-height:72px;resize:vertical}
+.section-header{background:var(--green-light);border:0.5px solid #a7d7bb;border-radius:var(--border-radius-md);padding:8px 12px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--green-dark);margin-bottom:12px}
+.form-actions{display:flex;justify-content:flex-end;gap:8px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)}
+.btn-cancel{padding:8px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);font-size:12px;cursor:pointer}
+.toggle-row{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--color-text-primary)}
+.toggle{width:36px;height:20px;background:var(--green);border-radius:100px;position:relative;cursor:pointer;flex-shrink:0}
+.toggle::after{content:'';position:absolute;right:3px;top:3px;width:14px;height:14px;background:#fff;border-radius:50%}
+.login-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:420px;padding:32px}
+.login-logo{display:flex;flex-direction:column;align-items:center;margin-bottom:24px}
+.login-logo .logo-text{font-size:26px;font-weight:500;color:var(--green-dark)}
+.login-logo .logo-sub{font-size:12px;color:var(--color-text-secondary)}
+.login-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:28px 32px;width:100%;max-width:360px}
+.login-card .form-group{margin-bottom:14px}
+.btn-login{width:100%;background:var(--green-dark);color:#fff;border:none;border-radius:var(--border-radius-md);padding:11px;font-size:14px;font-weight:500;cursor:pointer;margin-top:4px}
+.forgot{text-align:center;font-size:12px;color:var(--green);cursor:pointer;margin-top:10px;text-decoration:underline}
+.stock-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px}
+.stock-ok{background:#10b981}.stock-low{background:#f59e0b}.stock-out{background:#e24b4a}
+.action-btns{display:flex;gap:4px}
+</style>
+
+<div class="app">
+  <div class="topbar">
+    <div class="brand"><i class="ti ti-leaf" aria-hidden="true"></i> AGRIGEST</div>
+    <nav id="topnav">
+      <a onclick="showPage('login')" id="tn-login">Login</a>
+      <a onclick="showPage('dashboard')" id="tn-dash" class="active">Dashboard</a>
+      <a onclick="showPage('agricultores')" id="tn-agri">Agricultores</a>
+      <a onclick="showPage('cad-agri')" id="tn-cadagri">Cad. Agricultores</a>
+      <a onclick="showPage('produtos')" id="tn-prod">Produtos</a>
+      <a onclick="showPage('cad-prod')" id="tn-cadprod">Cad. Produtos</a>
+      <a onclick="showPage('vendas')" id="tn-vend">Vendas</a>
+      <a onclick="showPage('reg-venda')" id="tn-regv">Reg. Vendas</a>
+    </nav>
+  </div>
+  <div class="main">
+    <div class="sidebar" id="sidebar">
+      <div class="sec-label">Principal</div>
+      <a onclick="showPage('dashboard')" id="sb-dash" class="active"><i class="ti ti-layout-dashboard" style="margin-right:8px;font-size:14px" aria-hidden="true"></i>Dashboard</a>
+      <div class="sec-label">Cadastro</div>
+      <a onclick="showPage('agricultores')" id="sb-agri"><i class="ti ti-user" style="margin-right:8px;font-size:14px" aria-hidden="true"></i>Agricultores</a>
+      <a onclick="showPage('produtos')" id="sb-prod"><i class="ti ti-basket" style="margin-right:8px;font-size:14px" aria-hidden="true"></i>Produtos</a>
+      <div class="sec-label">Comercial</div>
+      <a onclick="showPage('vendas')" id="sb-vend"><i class="ti ti-receipt" style="margin-right:8px;font-size:14px" aria-hidden="true"></i>Vendas</a>
+      <div class="sec-label">Análise</div>
+      <a onclick="showPage('dashboard')" id="sb-rel"><i class="ti ti-chart-bar" style="margin-right:8px;font-size:14px" aria-hidden="true"></i>Relatórios</a>
+    </div>
+
+    <div class="content">
+
+      <!-- LOGIN -->
+      <div class="page active" id="page-login" style="display:none">
+        <div class="login-wrap">
+          <div class="login-logo">
+            <div style="width:56px;height:56px;background:var(--green-light);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:10px">
+              <i class="ti ti-leaf" style="font-size:28px;color:var(--green)" aria-hidden="true"></i>
+            </div>
+            <div class="logo-text">AgriGest</div>
+            <div class="logo-sub">Sistema de Gestão de Feiras Agroecológicas</div>
+          </div>
+          <div class="login-card">
+            <div class="form-group"><label>Email</label><input type="email" placeholder="agricultor@email.com"></div>
+            <div class="form-group"><label>Senha</label><input type="password" placeholder="••••••••"></div>
+            <button class="btn-login" onclick="showPage('dashboard')">Entrar no sistema</button>
+            <div class="forgot">Esqueci a senha</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <div class="page" id="page-dashboard">
+        <div class="breadcrumb">Início / Dashboard</div>
+        <div class="page-title">Visão Geral</div>
+        <div class="page-sub">Bem-vindo ao AgriGest — Hoje, 18 de maio de 2026</div>
+        <div class="cards-row">
+          <div class="kpi"><div class="kpi-icon green"><i class="ti ti-users" aria-hidden="true"></i></div><div class="kpi-label">Agricultores</div><div class="kpi-val">42</div><div class="kpi-sub pos"><i class="ti ti-trending-up" style="font-size:11px" aria-hidden="true"></i> 3 novos este mês</div></div>
+          <div class="kpi"><div class="kpi-icon amber"><i class="ti ti-basket" aria-hidden="true"></i></div><div class="kpi-label">Produtos ativos</div><div class="kpi-val">128</div><div class="kpi-sub" style="color:#b45309">3 com estoque baixo</div></div>
+          <div class="kpi"><div class="kpi-icon blue"><i class="ti ti-shopping-cart" aria-hidden="true"></i></div><div class="kpi-label">Vendas hoje</div><div class="kpi-val">17</div><div class="kpi-sub" style="color:#e24b4a">5 pendentes</div></div>
+          <div class="kpi"><div class="kpi-icon purple"><i class="ti ti-currency-dollar" aria-hidden="true"></i></div><div class="kpi-label">Faturamento mês</div><div class="kpi-val">R$ 8.450</div><div class="kpi-sub pos"><i class="ti ti-trending-up" style="font-size:11px" aria-hidden="true"></i> +12% vs anterior</div></div>
+        </div>
+        <div class="alert-bar"><i class="ti ti-alert-triangle" style="font-size:16px" aria-hidden="true"></i> Atenção: 3 produtos com estoque abaixo do mínimo. Reposição necessária.</div>
+        <div class="panel">
+          <div class="panel-title">Últimas vendas</div>
+          <table>
+            <thead><tr><th>#ID</th><th>Produto</th><th>Cliente</th><th>Qtd</th><th>Valor Final</th><th>Pagamento</th><th>Status</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td>#0094</td><td>Tomate Orgânico</td><td>Felipe Emanuel</td><td>5kg</td><td>R$ 54,50</td><td>PIX</td><td><span class="badge concluida">Concluída</span></td><td>03/03 05:00</td></tr>
+              <tr><td>#0033</td><td>Rapadura</td><td>João Costa</td><td>3 uni</td><td>R$ 15,00</td><td>Dinheiro</td><td><span class="badge pendente">Pendente</span></td><td>03/03 05:10</td></tr>
+              <tr><td>#0032</td><td>Mel de Abelha</td><td>Eduardo Magalhães</td><td>5L</td><td>R$ 225,00</td><td>Débito</td><td><span class="badge concluida">Concluída</span></td><td>03/03 06:20</td></tr>
+              <tr><td>#0033</td><td>Castanha de Caju</td><td>Eyshila Serena</td><td>2kg</td><td>R$ 30,00</td><td>Crédito</td><td><span class="badge cancelada">Cancelada</span></td><td>03/03 08:00</td></tr>
+            </tbody>
+          </table>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:10px">Mostrando 4 de 334 registros</div>
+        </div>
+      </div>
+
+      <!-- AGRICULTORES -->
+      <div class="page" id="page-agricultores">
+        <div class="breadcrumb">Início / Agricultores</div>
+        <div class="page-title">Agricultores</div>
+        <div class="page-sub">Gerencie os produtores rurais cadastrados no sistema</div>
+        <div class="toolbar">
+          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> Buscar por nome, CPF ou ID...</div>
+          <button class="btn-primary" onclick="showPage('cad-agri')"><i class="ti ti-plus" aria-hidden="true"></i> Cadastrar agricultor</button>
+        </div>
+        <div class="panel">
+          <table>
+            <thead><tr><th>#ID</th><th>Nome</th><th>CPF</th><th>Cidade/UF</th><th>Telefone</th><th>Total vendas</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody>
+              <tr><td>01</td><td>Francisca Rodrigues</td><td>007.355.444.55</td><td>Itapipoca CE</td><td>(88) 98879-5522</td><td>R$ 550,00</td><td><span class="badge ativo">Ativo</span></td><td><div class="action-btns"><button class="btn-sm">Ver</button><button class="btn-sm">Editar</button><button class="btn-sm danger">Desativar</button></div></td></tr>
+              <tr><td>02</td><td>Antônio Moura Costa</td><td>017.355.424.19</td><td>Itapipoca CE</td><td>(88) 98979-3312</td><td>R$ 700,00</td><td><span class="badge ativo">Ativo</span></td><td><div class="action-btns"><button class="btn-sm">Ver</button><button class="btn-sm">Editar</button><button class="btn-sm danger">Desativar</button></div></td></tr>
+              <tr><td>03</td><td>Maria Filomena da Silva</td><td>123.456.789.00</td><td>Amontada CE</td><td>(88) 98519-5321</td><td>R$ 2.550,00</td><td><span class="badge ativo">Ativo</span></td><td><div class="action-btns"><button class="btn-sm">Ver</button><button class="btn-sm">Editar</button><button class="btn-sm danger">Desativar</button></div></td></tr>
+              <tr><td>04</td><td>José Antero Lima</td><td>007.355.444.55</td><td>Tururu CE</td><td>(88) 93776-5312</td><td>R$ 0,00</td><td><span class="badge inativo">Inativo</span></td><td><div class="action-btns"><button class="btn-sm">Ver</button><button class="btn-sm">Reativar</button></div></td></tr>
+            </tbody>
+          </table>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:10px">Mostrando 4 de 34 registros</div>
+        </div>
+      </div>
+
+      <!-- CAD AGRICULTOR -->
+      <div class="page" id="page-cad-agri">
+        <div class="breadcrumb">Início / Agricultores / Cadastrar</div>
+        <div class="page-title">Cadastrar Agricultor</div>
+        <div class="page-sub">Preencha os dados do produtor rural. (*) Campos obrigatórios</div>
+        <div class="panel">
+          <div class="section-header"><i class="ti ti-user" aria-hidden="true"></i> Dados pessoais</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Nome completo *</label><input type="text" placeholder="Ex. Danilo Barros de Novais"></div>
+            <div class="form-group"><label>CPF *</label><input type="text" placeholder="000.000.000-00"></div>
+            <div class="form-group"><label>Email</label><input type="email" placeholder="agricultor@gmail.com"></div>
+            <div class="form-group"><label>Telefone *</label><input type="text" placeholder="(xx) xxxxx-xxxx"></div>
+          </div>
+          <div class="section-header" style="margin-top:4px"><i class="ti ti-map-pin" aria-hidden="true"></i> Endereço</div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Endereço</label><input type="text" placeholder="Sítio Vó Santa, Zona Rural"></div>
+          </div>
+          <div class="form-grid" style="grid-template-columns:1fr 1fr 140px">
+            <div class="form-group"><label>Cidade</label><input type="text" placeholder="Itapipoca"></div>
+            <div class="form-group"><label>Estado</label><select><option>Selecione...</option><option selected>CE</option><option>PI</option><option>RN</option></select></div>
+            <div class="form-group"><label>CEP</label><input type="text" placeholder="00.000-00"></div>
+          </div>
+          <div class="section-header" style="margin-top:4px"><i class="ti ti-settings" aria-hidden="true"></i> Configurações</div>
+          <div class="toggle-row"><div class="toggle"></div> Agricultor ativo</div>
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="showPage('agricultores')">Cancelar</button>
+            <button class="btn-primary"><i class="ti ti-check" aria-hidden="true"></i> Salvar agricultor</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTOS -->
+      <div class="page" id="page-produtos">
+        <div class="breadcrumb">Início / Produtos</div>
+        <div class="page-title">Produtos</div>
+        <div class="page-sub">Catálogo de itens agrícolas disponíveis para venda</div>
+        <div class="alert-bar" style="margin-bottom:12px"><i class="ti ti-alert-triangle" style="font-size:16px" aria-hidden="true"></i> 3 produtos com estoque abaixo do mínimo. Reposição necessária.</div>
+        <div class="toolbar">
+          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> Buscar produto ou categoria...</div>
+          <button class="btn-primary" onclick="showPage('cad-prod')"><i class="ti ti-plus" aria-hidden="true"></i> Cadastrar produto</button>
+        </div>
+        <div class="panel">
+          <table>
+            <thead><tr><th>ID</th><th>Produto</th><th>Agricultor</th><th>Categoria</th><th>Preço</th><th>Tipo</th><th>Estoque</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody>
+              <tr><td>01</td><td>Tomate Orgânico</td><td>Filipi Emanuel</td><td>Hortaliça</td><td>R$ 10,90</td><td>kg</td><td><span class="stock-dot stock-ok"></span>30 kg</td><td><span class="badge ativo">Ativo</span></td><td><div class="action-btns"><button class="btn-sm">Ver</button><button class="btn-sm">Editar</button></div></td></tr>
+              <tr><td>02</td><td>Rapadura</td><td>João Costa</td><td>Cana-de-açúcar</td><td>R$ 15,00</td><td>uni</td><td><span class="stock-dot stock-ok"></span>200 uni</td><td><span class="badge ativo">Ativo</span></td><td><div class="action-btns"><button class="btn-sm">Ver</button><button class="btn-sm">Editar</button></div></td></tr>
+              <tr><td>03</td><td>Mel de Abelha</td><td>Eduardo Magalhães</td><td>Apicultura</td><td>R$ 45,00</td><td>Litro</td><td><span class="stock-dot stock-low"></span>5 L ⚠</td><td><span class="badge ativo">Ativo</span></td><td><div class="action-btns"><button class="btn-sm">Ver</button><button class="btn-sm">Editar</button></div></td></tr>
+              <tr><td>04</td><td>Castanha de Caju</td><td>Eyshila Serena</td><td>Snacks</td><td>R$ 45,00</td><td>kg</td><td><span class="stock-dot stock-ok"></span>15 kg</td><td><span class="badge ativo">Ativo</span></td><td><div class="action-btns"><button class="btn-sm">Ver</button><button class="btn-sm">Editar</button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CAD PRODUTO -->
+      <div class="page" id="page-cad-prod">
+        <div class="breadcrumb">Início / Produtos / Cadastrar</div>
+        <div class="page-title">Cadastrar Produto</div>
+        <div class="page-sub">Adicione um novo item ao catálogo agrícola. (*) Campos obrigatórios</div>
+        <div class="panel">
+          <div class="section-header"><i class="ti ti-leaf" aria-hidden="true"></i> Identificação do produto</div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Agricultor responsável *</label><select><option>Selecione o agricultor...</option><option>Francisca Rodrigues</option><option>Antônio Moura Costa</option><option>Maria Filomena da Silva</option></select></div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group"><label>Nome do produto *</label><input type="text" placeholder="Ex. Tomate Orgânico..."></div>
+            <div class="form-group"><label>Categoria *</label><select><option>Selecione...</option><option>Hortaliça</option><option>Fruta</option><option>Apicultura</option><option>Snacks</option></select></div>
+          </div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Descrição</label><textarea placeholder="Descreva o produto, características, cultivo, etc..."></textarea></div>
+          </div>
+          <div class="section-header"><i class="ti ti-tag" aria-hidden="true"></i> Preço e comercialização</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Tipo de venda *</label><select><option>Selecione...</option><option>kg</option><option>Litro</option><option>Unidade</option><option>Caixa</option></select></div>
+            <div class="form-group"><label>Preço unitário (R$) *</label><input type="number" placeholder="0,00" value="0"></div>
+          </div>
+          <div class="section-header"><i class="ti ti-package" aria-hidden="true"></i> Estoque</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Quantidade em estoque *</label><input type="number" value="0"></div>
+            <div class="form-group"><label>Estoque mínimo *</label><input type="number" value="10"></div>
+          </div>
+          <div class="toggle-row"><div class="toggle"></div> Produto ativo no catálogo</div>
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="showPage('produtos')">Cancelar</button>
+            <button class="btn-primary"><i class="ti ti-check" aria-hidden="true"></i> Salvar produto</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VENDAS -->
+      <div class="page" id="page-vendas">
+        <div class="breadcrumb">Início / Vendas</div>
+        <div class="page-title">Vendas</div>
+        <div class="page-sub">Histórico completo de transações comerciais</div>
+        <div class="toolbar">
+          <div class="search-box"><i class="ti ti-search" aria-hidden="true"></i> Buscar por cliente, produto...</div>
+          <button class="btn-primary" onclick="showPage('reg-venda')"><i class="ti ti-plus" aria-hidden="true"></i> Registrar venda</button>
+        </div>
+        <div class="panel">
+          <table>
+            <thead><tr><th>ID</th><th>Produto</th><th>Cliente</th><th>Qtd</th><th>V. Unitário</th><th>Desconto</th><th>Valor Final</th><th>Pagamento</th><th>Status</th><th>Data</th><th>Ações</th></tr></thead>
+            <tbody>
+              <tr><td>01</td><td>Tomate Orgânico</td><td>Allyson Allex</td><td>5kg</td><td>R$ 7,50</td><td>—</td><td>R$ 37,50</td><td>PIX</td><td><span class="badge concluida">Concluída</span></td><td>03/03 06:00</td><td><button class="btn-sm">Ver</button></td></tr>
+              <tr><td>02</td><td>Rapadura</td><td>Márcio Francisco</td><td>3 uni</td><td>R$ 5,00</td><td>—</td><td>R$ 15,00</td><td>Débito</td><td><span class="badge concluida">Concluída</span></td><td>03/03 06:30</td><td><button class="btn-sm">Ver</button></td></tr>
+              <tr><td>03</td><td>Mel de Abelha</td><td>Fabrício Lima</td><td>5L</td><td>R$ 45,00</td><td>—</td><td>R$ 225,00</td><td>Dinheiro</td><td><span class="badge concluida">Concluída</span></td><td>03/03 07:10</td><td><div class="action-btns"><button class="btn-sm">Ver</button><button class="btn-sm" style="color:#059669;border-color:#a7f3d0">Concluir</button></div></td></tr>
+              <tr><td>04</td><td>Castanha de Caju</td><td>Jildonas Afonso</td><td>3kg</td><td>R$ 45,00</td><td>R$ 8,00</td><td>R$ 135,00</td><td>Crédito</td><td><span class="badge pendente">Pendente</span></td><td>03/03 09:00</td><td><button class="btn-sm">Ver</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- REG VENDA -->
+      <div class="page" id="page-reg-venda">
+        <div class="breadcrumb">Início / Vendas / Registrar venda</div>
+        <div class="page-title">Registrar Venda</div>
+        <div class="page-sub">Registre uma nova transação comercial. (*) Campos obrigatórios</div>
+        <div class="panel">
+          <div class="section-header"><i class="ti ti-basket" aria-hidden="true"></i> Identificação do produto</div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Produto *</label><select><option>Selecione o produto...</option><option>Tomate Orgânico — R$ 10,90/kg</option><option>Rapadura — R$ 15,00/uni</option><option>Mel de Abelha — R$ 45,00/L</option><option>Castanha de Caju — R$ 45,00/kg</option></select></div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group"><label>Quantidade *</label><input type="number" value="0"></div>
+            <div class="form-group"><label>Valor unitário (R$) *</label><input type="number" placeholder="Preenchido automaticamente..." readonly></div>
+            <div class="form-group"><label>Valor total (R$)</label><input type="text" placeholder="Calculado automaticamente..." readonly style="background:var(--color-background-secondary)"></div>
+            <div class="form-group"><label>Desconto (R$)</label><input type="number" value="0"></div>
+          </div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Valor final (R$)</label><input type="text" placeholder="Calculado automaticamente..." readonly style="background:var(--color-background-secondary)"></div>
+          </div>
+          <div class="section-header"><i class="ti ti-user" aria-hidden="true"></i> Dados do cliente</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Nome do cliente *</label><input type="text" placeholder="Nome completo..."></div>
+            <div class="form-group"><label>CPF do cliente *</label><input type="text" placeholder="000.000.000-00"></div>
+          </div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Telefone *</label><input type="text" placeholder="(00) 0 0000-0000"></div>
+          </div>
+          <div class="section-header"><i class="ti ti-credit-card" aria-hidden="true"></i> Pagamento</div>
+          <div class="form-grid">
+            <div class="form-group"><label>Forma de pagamento *</label><select><option>Selecione...</option><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option></select></div>
+            <div class="form-group"><label>Status</label><select><option>Concluída</option><option>Pendente</option><option>Cancelada</option></select></div>
+          </div>
+          <div class="form-grid cols1">
+            <div class="form-group"><label>Observações</label><textarea placeholder="Informações adicionais sobre a venda..."></textarea></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="showPage('vendas')">Cancelar</button>
+            <button class="btn-primary"><i class="ti ti-check" aria-hidden="true"></i> Cadastrar venda</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const pages={login:'page-login',dashboard:'page-dashboard',agricultores:'page-agricultores','cad-agri':'page-cad-agri',produtos:'page-produtos','cad-prod':'page-cad-prod',vendas:'page-vendas','reg-venda':'page-reg-venda'};
+const topnavIds={login:'tn-login',dashboard:'tn-dash',agricultores:'tn-agri','cad-agri':'tn-cadagri',produtos:'tn-prod','cad-prod':'tn-cadprod',vendas:'tn-vend','reg-venda':'tn-regv'};
+const sidebarIds={dashboard:'sb-dash',agricultores:'sb-agri','cad-agri':'sb-agri',produtos:'sb-prod','cad-prod':'sb-prod',vendas:'sb-vend','reg-venda':'sb-vend'};
+let current='dashboard';
+function showPage(name){
+  document.getElementById(pages[current]).classList.remove('active');
+  document.getElementById(pages[current]).style.display='none';
+  const tn=document.getElementById(topnavIds[current]);
+  if(tn)tn.classList.remove('active');
+  const sb=document.getElementById(sidebarIds[current]);
+  if(sb)sb.classList.remove('active');
+  const sidebar=document.getElementById('sidebar');
+  if(name==='login'){sidebar.style.display='none'}else{sidebar.style.display='block'}
+  current=name;
+  document.getElementById(pages[current]).classList.add('active');
+  document.getElementById(pages[current]).style.display='block';
+  const tn2=document.getElementById(topnavIds[current]);
+  if(tn2)tn2.classList.add('active');
+  const sb2=document.getElementById(sidebarIds[current]);
+  if(sb2)sb2.classList.add('active');
+}
+showPage('dashboard');
+</script>
